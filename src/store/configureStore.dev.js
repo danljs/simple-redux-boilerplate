@@ -12,12 +12,28 @@ import DevTools from '../containers/DevTools';
  */
 const logger = createLogger();
 
+
+// createStore 的参数
+//  createStore(reducer, [initialState], [enhancer])
+
+//  这里的applyMiddleware之类的 都是 enhancer
+//  const store = createStore(
+//   reducer,
+//   compose(
+//     applyMiddleware(thunk),
+//     DevTools.instrument()
+//   )
+// )
+
+// 下面这样写是为了把 createStore 包装成 finalCreateStore，用于调用
 const finalCreateStore = compose(
   // Middleware you want to use in development:
   applyMiddleware(logger, thunk),
   // Required! Enable Redux DevTools with the monitors you chose
   DevTools.instrument()
 )(createStore);
+
+
 
 module.exports = function configureStore(initialState) {
   const store = finalCreateStore(rootReducer, initialState);
@@ -31,3 +47,6 @@ module.exports = function configureStore(initialState) {
 
   return store;
 };
+
+
+

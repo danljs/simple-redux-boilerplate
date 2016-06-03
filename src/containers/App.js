@@ -67,3 +67,10 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(App);
+
+
+// connect 将 counter 和 actions 塞入 App （这里的 counter 是用mapStateToProps 筛选出来的，因为不想让App 访问其他的state）
+// App 初始化 拿到，将counter 和 actions 塞入 Counter
+// Counter 调用 handleIncrement , 实际上调用了 CounterActions 的 increment
+// increment 返回 action ， 广播所有的 reducer， 被 counter reducer 吃到， 返回 state
+// reducer update state to store
