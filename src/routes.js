@@ -2,27 +2,29 @@
 * @Author: mithril
 * @Date:   2016-06-07 16:25:32
 * @Last Modified by:   mithril
-* @Last Modified time: 2016-06-08 13:32:32
+* @Last Modified time: 2016-06-17 14:06:52
 */
 
 'use strict';
 
 import React from 'react'
 import { Route, IndexRoute } from 'react-router'
-import {
-    App,
-    Home,
-    About,
-    // Account,
-    // Widgets,
-    // About,
-    // Login,
-    // LoginSuccess,
-    // Survey,
-    // NotFound,
-  } from 'containers';
+// import {
+//     App,
+//     Home,
+//     About,
+//     // Account,
+//     // Widgets,
+//     // About,
+//     // Login,
+//     // LoginSuccess,
+//     // Survey,
+//     // NotFound,
+//   } from './containers';
 
-import { Root } from './containers/Root';
+import { App } from './containers/App';
+import { Home } from './containers/Home';
+import { About } from './containers/Home';
 
 
 export default (
@@ -32,6 +34,6 @@ export default (
   </Route>
 )
 
-    // <Route path="/repos" component={Repos}>
-    //   <Route path="/repos/:userName/:repoName" component={Repo}/>
-    // </Route>
+// <Route path="/repos" component={Repos}>
+//   <Route path="/repos/:userName/:repoName" component={Repo}/>
+// </Route>

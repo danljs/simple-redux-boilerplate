@@ -1,8 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as CounterActions from '../actions/CounterActions';
-import Counter from '../components/Counter';
+import TreeNode from './TreeNode';
 import Footer from '../components/Footer';
 
 /**
@@ -13,12 +12,12 @@ import Footer from '../components/Footer';
 export default class App extends Component {
   render() {
     // we can use ES6's object destructuring to effectively 'unpack' our props
-    const { counter, actions } = this.props;
+    const { actions } = this.props;
     return (
       <div className="main-app-container">
         <div className="main-app-nav">Simple Redux Boilerplate</div>
         {/* notice that we then pass those unpacked props into the Counter component */}
-        <Counter counter={counter} actions={actions} />
+        <TreeNode />
         <Footer />
       </div>
     );
@@ -26,8 +25,8 @@ export default class App extends Component {
 }
 
 App.propTypes = {
-  counter: PropTypes.number.isRequired,
-  actions: PropTypes.object.isRequired
+  // counter: PropTypes.number.isRequired,
+  // actions: PropTypes.object.isRequired
 };
 
 /**
@@ -35,11 +34,12 @@ App.propTypes = {
  * state in this Redux application. 'counter' is a property within our store/state
  * object. By mapping it to props, we can pass it to the child component Counter.
  */
-function mapStateToProps(state) {
-  return {
-    counter: state.counter
-  };
-}
+
+// function mapStateToProps(state) {
+//   return {
+//     open: state.open
+//   };
+// }
 
 /**
  * Turns an object whose values are 'action creators' into an object with the same
@@ -49,11 +49,12 @@ function mapStateToProps(state) {
  *
  * More info: http://redux.js.org/docs/api/bindActionCreators.html
  */
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(CounterActions, dispatch)
-  };
-}
+
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     actions: bindActionCreators(Actions, dispatch)
+//   };
+// }
 
 /**
  * 'connect' is provided to us by the bindings offered by 'react-redux'. It simply

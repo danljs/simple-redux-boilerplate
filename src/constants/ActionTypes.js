@@ -5,3 +5,12 @@
  */
 export const INCREMENT_COUNTER = 'INCREMENT_COUNTER';
 export const DECREMENT_COUNTER = 'DECREMENT_COUNTER';
+
+
+
+export const OPEN_NODE = 'OPEN_NODE'
+export const CLOSE_NODE = 'CLOSE_NODE'
+export const CREATE_NODE = 'CREATE_NODE'
+export const DELETE_NODE = 'DELETE_NODE'
+export const ADD_CHILD = 'ADD_CHILD'
+export const REMOVE_CHILD = 'REMOVE_CHILD'
