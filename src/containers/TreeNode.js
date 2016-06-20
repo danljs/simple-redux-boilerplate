@@ -2,7 +2,7 @@
 * @Author: mithril
 * @Date:   2016-06-15 11:09:01
 * @Last Modified by:   mithril
-* @Last Modified time: 2016-06-20 14:01:21
+* @Last Modified time: 2016-06-20 17:08:24
 */
 
 import React, { Component, PropTypes } from 'react'
@@ -14,10 +14,6 @@ import * as NodeActions from '../actions/NodeActions'
 // import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../constants/TodoFilters'
 
 class TreeNode extends Component {
-  // constructor(props, context) {
-  //   super(props, context)
-  //   this.state = { filter: SHOW_ALL }
-  // }
 
   // handleClearCompleted() {
   //   this.props.actions.clearCompleted()
@@ -27,43 +23,49 @@ class TreeNode extends Component {
   //   this.setState({ filter })
   // }
 
-  constructor(props, context) {
-    super(props, context)
-    this.state = {
-      open: false
+  // constructor(props, context) {
+  //   super(props, context)
+  //   this.state = {
+  //     open: false
+  //   }
+  // }
+
+  handleClick() {
+    this.setState({ open: !this.state.open })
+    if (this.state.open){
+      this.actions.getNodes()
     }
   }
 
-  handleClick() {
-    this.setState({ open: !this.state })
-  }
-
   render() {
-    const { actions } = this.props
-    const { filter } = this.state
+    const { actions, nodes, info } = this.props
+
+    if (nodes) {
+      const children =<div>{nodes.map(node => <TreeNode info={node} />)}</div>
+    } else {
+      const children = <div>no open</div>
+    }
 
     return (
-        <ul className={classNames('tree-node', { 'open':this.props.open})} onClick={ () => {this.handleClick()} }>
-        {/*
-          {nodes.map(node =>
-            <TreeNode key={node.name} node={node} {...actions}  />
-          )}
-         */}
-         {this.props.children}
-
-        </ul>
-    )
+      <div className={classNames('tree-node', { 'open':this.props.open})} onClick={ () => {this.handleClick()} }>
+        <a>{info.name}</a>
+        {children}
+      </div>
+    );
   }
 }
 
 TreeNode.propTypes = {
+  info:PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired
 }
 
 
 function mapStateToProps(state) {
   return {
-    open: state.open
+    open: state.open,
+    info: state.info,
+    nodes: state.nodes
   };
 }
 

@@ -47,6 +47,3 @@ module.exports = function configureStore(initialState) {
 
   return store;
 };
-
-
-
