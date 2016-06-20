@@ -1,8 +1,8 @@
 /*
 * @Author: mithril
 * @Date:   2016-06-15 11:09:01
-* @Last Modified by:   mithril
-* @Last Modified time: 2016-06-20 17:08:24
+* @Last Modified by:   Kasim
+* @Last Modified time: 2016-06-20 23:06:02
 */
 
 import React, { Component, PropTypes } from 'react'
@@ -11,24 +11,16 @@ import { connect } from 'react-redux'
 import classNames from 'classnames/bind'
 import * as NodeActions from '../actions/NodeActions'
 
-// import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../constants/TodoFilters'
+export default class TreeNode extends Component {
 
-class TreeNode extends Component {
-
-  // handleClearCompleted() {
-  //   this.props.actions.clearCompleted()
-  // }
-
-  // handleShow(filter) {
-  //   this.setState({ filter })
-  // }
-
-  // constructor(props, context) {
-  //   super(props, context)
-  //   this.state = {
-  //     open: false
-  //   }
-  // }
+  constructor(props, context) {
+    super(props, context)
+    this.props = {
+      open: false,
+      nodes: [],
+      info:{}
+    }
+  }
 
   handleClick() {
     this.setState({ open: !this.state.open })
@@ -39,12 +31,9 @@ class TreeNode extends Component {
 
   render() {
     const { actions, nodes, info } = this.props
-
-    if (nodes) {
-      const children =<div>{nodes.map(node => <TreeNode info={node} />)}</div>
-    } else {
-      const children = <div>no open</div>
-    }
+    console.log(this.props)
+    console.log(nodes===undefined)
+    var children = { nodes ? <div>{nodes.map(node => <TreeNode info={node} actions={actions} />)}</div> : <div>no open</div> }
 
     return (
       <div className={classNames('tree-node', { 'open':this.props.open})} onClick={ () => {this.handleClick()} }>
@@ -57,27 +46,17 @@ class TreeNode extends Component {
 
 TreeNode.propTypes = {
   info:PropTypes.object.isRequired,
+  nodes:PropTypes.array,
   actions: PropTypes.object.isRequired
 }
 
 
-function mapStateToProps(state) {
-  return {
-    open: state.open,
-    info: state.info,
-    nodes: state.nodes
-  };
-}
 
+  // handleClearCompleted() {
+  //   this.props.actions.clearCompleted()
+  // }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(NodeActions, dispatch)
-  };
-}
+  // handleShow(filter) {
+  //   this.setState({ filter })
+  // }
 
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(TreeNode);

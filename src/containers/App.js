@@ -22,7 +22,7 @@ export default class App extends Component {
         <div className="main-app-nav">Simple Redux Boilerplate</div>
         <div>
           {nodes.map(node =>
-            <TreeNode key={node.name} info={node} />
+            <TreeNode key={node.name} info={node} actions={this.props.actions}/>
           )}
         </div>
 
@@ -49,4 +49,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(App);
-
