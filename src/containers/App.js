@@ -10,7 +10,7 @@ export default class App extends Component {
 
   componentWillMount() {
     // this will update the nodes on state
-    this.props.actions.getNodes();
+    this.props.actions.getNodes('/');
   }
 
   render() {

@@ -2,7 +2,7 @@
 * @Author: mithril
 * @Date:   2016-06-15 11:09:01
 * @Last Modified by:   mithril
-* @Last Modified time: 2016-06-21 11:08:38
+* @Last Modified time: 2016-06-21 14:41:38
 */
 
 import React, { Component, PropTypes } from 'react'
@@ -41,7 +41,7 @@ export default class TreeNode extends Component {
     if (open) {
       this.props.actions.closeNode()
     } else {
-      this.props.actions.openNode()
+      this.props.actions.openNode(this.info.path)
     }
   }
 
