@@ -28,9 +28,13 @@ const logger = createLogger();
 // 下面这样写是为了把 createStore 包装成 finalCreateStore，用于调用
 const finalCreateStore = compose(
   // Middleware you want to use in development:
-  applyMiddleware(logger, thunk),
+  applyMiddleware(
+    logger,
+    thunk
+    ),
   // Required! Enable Redux DevTools with the monitors you chose
-  DevTools.instrument()
+  window.devToolsExtension ? window.devToolsExtension() : f => f
+  // DevTools.instrument()
 )(createStore);
 
 

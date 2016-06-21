@@ -26,7 +26,7 @@ export default class App extends Component {
           )}
         </div>
 
-        <Footer />
+        {/*<Footer />*/}
       </div>
     );
   }
@@ -34,7 +34,8 @@ export default class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    nodes: state.opener.nodes
+    nodes: state.opener.nodes,
+    open: state.opener.open
   };
 }
 
